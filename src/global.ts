@@ -1,16 +1,15 @@
 import {createGlobalStyle} from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
+
   body{
-    font-family: 'Poppins', sans-serif;
-  font-weight: 500;
   font-style: normal;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
-  background: #1f1f1f85;
-}
+  background-color: gray;
+  }
 *,
 ::after,
 ::before {

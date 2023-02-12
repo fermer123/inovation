@@ -1,13 +1,13 @@
+import Box from '@mui/material/Box';
 import {FC} from 'react';
-import styled from 'styled-components';
+import InputForm from './components/inputForm/InputForm';
 
-const AppWrapper = styled.div`
-  width: 100%;
-  min-height: 100vh;
-  background: black;
-`;
 const App: FC = () => {
-  return <AppWrapper>123</AppWrapper>;
+  return (
+    <Box sx={{mx: 1, mt: 1}}>
+      <InputForm />
+    </Box>
+  );
 };
 
 export default App;
