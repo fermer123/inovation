@@ -1,15 +1,13 @@
 import {createGlobalStyle} from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-
-  body{
+body{
   font-style: normal;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
-  background-color: gray;
-  }
+}
 *,
 ::after,
 ::before {

@@ -25,6 +25,9 @@
   },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
+    "@typescript-eslint/no-unsafe-call": "off",
+    "react/destructuring-assignment": "off",
+    "react/jsx-props-no-spreading": "off",
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "import/no-unresolved": "off",

@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import {FC, memo} from 'react';
 import styled from 'styled-components';
 import Avatar from '@mui/material/Avatar';
 import {Button, ButtonGroup, Card, CardContent, Box} from '@mui/material';
@@ -47,12 +47,12 @@ const CommentWrapperItemBottomContent = styled(CardContent)`
   padding: 0 0;
 `;
 
-const Item: FC<IComment> = ({comment, name, raiting}) => {
+const CommentItem: FC<IComment> = ({comment, name, raiting}) => {
   return (
     <CommentWrapperItem>
       <CommentWrapperItemTopContent>
         <CommentWrapperItemTopContentInfo>
-          <Avatar>{name}</Avatar>
+          <Avatar>{[...name].slice(0, 1)}</Avatar>
           <CommentWrapperItemTopContentInfoName>
             {name}
           </CommentWrapperItemTopContentInfoName>
@@ -75,4 +75,4 @@ const Item: FC<IComment> = ({comment, name, raiting}) => {
   );
 };
 
-export default Item;
+export default memo(CommentItem);
