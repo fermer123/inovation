@@ -39,15 +39,23 @@ const CommentWrapperItemTopContentInfoRaitingNumber = styled.p`
   color: #2196f3;
 `;
 
-const CommentWrapperItemConmment = styled(CardContent)``;
-
 const CommentWrapperItemBottomContent = styled(CardContent)`
   align-self: flex-end;
   justify-self: flex-start;
   padding: 0 0;
 `;
-
-const CommentItem: FC<IComment> = ({comment, name, raiting}) => {
+interface ICommentItemProps extends IComment {
+  addRaiting: (e: number) => void;
+  subtractRaiting: (e: number) => void;
+}
+const CommentItem: FC<ICommentItemProps> = ({
+  name,
+  raiting,
+  id,
+  comment,
+  addRaiting,
+  subtractRaiting,
+}) => {
   return (
     <CommentWrapperItem>
       <CommentWrapperItemTopContent>
@@ -62,12 +70,12 @@ const CommentItem: FC<IComment> = ({comment, name, raiting}) => {
             Рейтинг: {raiting}
           </CommentWrapperItemTopContentInfoRaitingNumber>
           <ButtonGroup variant='outlined'>
-            <Button>-</Button>
-            <Button>+</Button>
+            <Button onClick={() => subtractRaiting(id)}>-</Button>
+            <Button onClick={() => addRaiting(id)}>+</Button>
           </ButtonGroup>
         </CommentWrapperItemTopContentInfoRaiting>
       </CommentWrapperItemTopContent>
-      <CommentWrapperItemConmment>{comment}</CommentWrapperItemConmment>
+      <CardContent>{comment}</CardContent>
       <CommentWrapperItemBottomContent>
         1 час назад
       </CommentWrapperItemBottomContent>

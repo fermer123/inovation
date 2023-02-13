@@ -1,9 +1,9 @@
 import {Stack} from '@mui/material';
 import Box from '@mui/material/Box';
-import {FC, useState, useMemo} from 'react';
+import {FC, useState, useCallback} from 'react';
 import styled from 'styled-components';
 import {v4 as uuidv4} from 'uuid';
-import PostButton from './components/button/Button';
+import PostButton from './components/PostButton/PostButton';
 import Comments from './components/comments/Comments';
 import useInput from './components/hooks/input';
 import InputForm from './components/inputForm/InputForm';
@@ -38,11 +38,11 @@ const App: FC = () => {
       raiting: 11,
     },
   ]);
-  const postData = () => {
+
+  const postDataMemo = useCallback(() => {
     setData([
       ...data,
       {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         id: parseInt(uuidv4(), 36),
         name: name.value,
         comment: comment.value,
@@ -50,8 +50,10 @@ const App: FC = () => {
         raiting: 0,
       },
     ]);
-  };
-
+    name.setValue('');
+    comment.setValue('');
+    email.setValue('');
+  }, [comment, data, email, name]);
   return (
     <Box sx={{mx: 1, mt: 1}}>
       <InputFormWrapper>
@@ -61,10 +63,10 @@ const App: FC = () => {
         </Stack>
         <Stack direction='row' spacing={2}>
           <InputForm label='Введите комментарий' {...comment} />
-          <PostButton postData={postData} />
         </Stack>
+        <PostButton postData={postDataMemo} />
+        <Comments data={data} setData={setData} />
       </InputFormWrapper>
-      <Comments data={data} />
     </Box>
   );
 };

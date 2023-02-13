@@ -10,6 +10,7 @@ const useInput = (initialValie = '') => {
     [setValue],
   );
   return {
+    setValue,
     value,
     onChange: changeHandler,
   };
