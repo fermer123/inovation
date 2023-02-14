@@ -57,12 +57,14 @@ const App: FC = () => {
         comment: comment.value,
         email: email.value,
         raiting: 0,
+        date: Date.now(),
       },
     ]);
     name.setValue('');
     comment.setValue('');
     email.setValue('');
   }, [comment, data, email, name]);
+
   return (
     <Box sx={{mx: 1, mt: 1}}>
       <InputFormWrapper>

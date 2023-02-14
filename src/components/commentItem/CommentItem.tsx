@@ -1,4 +1,4 @@
-import {FC, memo, useCallback, useState} from 'react';
+import {FC, memo, useCallback, useEffect, useState} from 'react';
 import styled from 'styled-components';
 import Avatar from '@mui/material/Avatar';
 import {Button, ButtonGroup, Card, CardContent, Box} from '@mui/material';
@@ -58,6 +58,7 @@ const CommentItem: FC<ICommentItemProps> = ({
   raiting,
   id,
   comment,
+  date,
   addRaiting,
   subtractRaiting,
 }) => {
@@ -66,6 +67,15 @@ const CommentItem: FC<ICommentItemProps> = ({
   const handleCommentOpen = useCallback(() => {
     setOpen(!open);
   }, [open]);
+
+  const dateHandler = (currentDate: number, commentDate: number) => {
+    const timePassed = currentDate - commentDate;
+    return `${timePassed / 3600000}`;
+  };
+
+  useEffect(() => {
+    dateHandler(Date.now(), date);
+  }, [date]);
 
   return (
     <CommentWrapperItem>
@@ -94,7 +104,7 @@ const CommentItem: FC<ICommentItemProps> = ({
           </CommentWrapperItemTopContent>
           <CardContent>{comment}</CardContent>
           <CommentWrapperItemBottomContent>
-            1 час назад
+            {dateHandler(Date.now(), date)}
           </CommentWrapperItemBottomContent>
         </>
       )}
