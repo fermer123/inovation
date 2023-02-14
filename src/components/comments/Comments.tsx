@@ -5,16 +5,18 @@ import styled from 'styled-components';
 import CommentItem from '../commentItem/CommentItem';
 
 const CommentWrapper = styled(Box)`
-  padding: 15px 30px;
+  padding: 0 0;
   display: flex;
   justify-content: center;
   flex-direction: column;
   gap: 1rem;
 `;
+
 interface ICommentsProps {
   data: IComment[];
   setData: Dispatch<SetStateAction<IComment[]>>;
 }
+
 const Comments: FC<ICommentsProps> = ({data, setData}) => {
   const addRaiting = useCallback(
     (id: number) => {

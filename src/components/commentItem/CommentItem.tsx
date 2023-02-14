@@ -1,4 +1,4 @@
-import {FC, memo} from 'react';
+import {FC, memo, useCallback, useState} from 'react';
 import styled from 'styled-components';
 import Avatar from '@mui/material/Avatar';
 import {Button, ButtonGroup, Card, CardContent, Box} from '@mui/material';
@@ -44,6 +44,11 @@ const CommentWrapperItemBottomContent = styled(CardContent)`
   justify-self: flex-start;
   padding: 0 0;
 `;
+
+const CommentWrapperItemShowContent = styled(Box)`
+  margin: 0 auto;
+`;
+
 interface ICommentItemProps extends IComment {
   addRaiting: (e: number) => void;
   subtractRaiting: (e: number) => void;
@@ -56,29 +61,43 @@ const CommentItem: FC<ICommentItemProps> = ({
   addRaiting,
   subtractRaiting,
 }) => {
+  const [open, setOpen] = useState<boolean>(true);
+
+  const handleCommentOpen = useCallback(() => {
+    setOpen(!open);
+  }, [open]);
+
   return (
     <CommentWrapperItem>
-      <CommentWrapperItemTopContent>
-        <CommentWrapperItemTopContentInfo>
-          <Avatar>{[...name].slice(0, 1)}</Avatar>
-          <CommentWrapperItemTopContentInfoName>
-            {name}
-          </CommentWrapperItemTopContentInfoName>
-        </CommentWrapperItemTopContentInfo>
-        <CommentWrapperItemTopContentInfoRaiting>
-          <CommentWrapperItemTopContentInfoRaitingNumber>
-            Рейтинг: {raiting}
-          </CommentWrapperItemTopContentInfoRaitingNumber>
-          <ButtonGroup variant='outlined'>
-            <Button onClick={() => subtractRaiting(id)}>-</Button>
-            <Button onClick={() => addRaiting(id)}>+</Button>
-          </ButtonGroup>
-        </CommentWrapperItemTopContentInfoRaiting>
-      </CommentWrapperItemTopContent>
-      <CardContent>{comment}</CardContent>
-      <CommentWrapperItemBottomContent>
-        1 час назад
-      </CommentWrapperItemBottomContent>
+      {raiting <= -10 && open ? (
+        <CommentWrapperItemShowContent onClick={handleCommentOpen}>
+          Открыть комментарий
+        </CommentWrapperItemShowContent>
+      ) : (
+        <>
+          <CommentWrapperItemTopContent>
+            <CommentWrapperItemTopContentInfo>
+              <Avatar>{[...name].slice(0, 1)}</Avatar>
+              <CommentWrapperItemTopContentInfoName>
+                {name}
+              </CommentWrapperItemTopContentInfoName>
+            </CommentWrapperItemTopContentInfo>
+            <CommentWrapperItemTopContentInfoRaiting>
+              <CommentWrapperItemTopContentInfoRaitingNumber>
+                Рейтинг: {raiting}
+              </CommentWrapperItemTopContentInfoRaitingNumber>
+              <ButtonGroup variant='outlined'>
+                <Button onClick={() => subtractRaiting(id)}>-</Button>
+                <Button onClick={() => addRaiting(id)}>+</Button>
+              </ButtonGroup>
+            </CommentWrapperItemTopContentInfoRaiting>
+          </CommentWrapperItemTopContent>
+          <CardContent>{comment}</CardContent>
+          <CommentWrapperItemBottomContent>
+            1 час назад
+          </CommentWrapperItemBottomContent>
+        </>
+      )}
     </CommentWrapperItem>
   );
 };

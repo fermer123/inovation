@@ -27,8 +27,9 @@ const App: FC = () => {
       id: 1,
       name: 'qwe',
       email: 'qwe@mail.ru',
-      comment: 'qweqwe',
-      raiting: 1,
+      comment:
+        'lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus, perferendis. Itaque architecto, delectus dolorem impedit, veritatis dolorum praesentium nesciunt velit aliquid laboriosam doloremque nostrum. Fugiat sunt nam ipsa quaerat labore, eius necessitatibus aut magnam sequi perspiciatis voluptate rerum eum quas dolorem quidem assumenda fuga amet, pariatur eveniet ipsam sint cumque',
+      raiting: -11,
     },
     {
       id: 2,
@@ -36,6 +37,14 @@ const App: FC = () => {
       email: 'asd@mail.ru',
       comment: 'asdasd',
       raiting: 11,
+    },
+    {
+      id: 3,
+      name: 'zxc',
+      email: 'zxc@mail.ru',
+      comment:
+        'lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus, perferendis. Itaque architecto, delectus dolorem impedit, veritatis dolorum praesentium nesciunt velit aliquid laboriosam doloremque nostrum. Fugiat sunt nam ipsa quaerat labore, eius necessitatibus aut magnam sequi perspiciatis voluptate rerum eum quas dolorem quidem assumenda fuga amet, pariatur eveniet ipsam sint cumque',
+      raiting: -12,
     },
   ]);
 
