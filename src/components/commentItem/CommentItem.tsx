@@ -1,4 +1,4 @@
-import {FC, memo, useCallback, useEffect, useState} from 'react';
+import {FC, memo, useState, useCallback} from 'react';
 import styled from 'styled-components';
 import Avatar from '@mui/material/Avatar';
 import {Button, ButtonGroup, Card, CardContent, Box} from '@mui/material';
@@ -63,19 +63,26 @@ const CommentItem: FC<ICommentItemProps> = ({
   subtractRaiting,
 }) => {
   const [open, setOpen] = useState<boolean>(true);
-
   const handleCommentOpen = useCallback(() => {
     setOpen(!open);
   }, [open]);
 
+  // eslint-disable-next-line consistent-return
   const dateHandler = (currentDate: number, commentDate: number) => {
+    const min = 60000;
+    const hour = 360000;
+    const day = 86400000;
     const timePassed = currentDate - commentDate;
-    return `${timePassed / 3600000}`;
+    if (timePassed < hour) {
+      return `${Math.floor(timePassed / min)} мин.`;
+    }
+    if (timePassed < day) {
+      return `${Math.floor(timePassed / hour)} ч.`;
+    }
+    if (timePassed > day) {
+      return `${Math.floor(timePassed / hour)} д.`;
+    }
   };
-
-  useEffect(() => {
-    dateHandler(Date.now(), date);
-  }, [date]);
 
   return (
     <CommentWrapperItem>
@@ -104,7 +111,7 @@ const CommentItem: FC<ICommentItemProps> = ({
           </CommentWrapperItemTopContent>
           <CardContent>{comment}</CardContent>
           <CommentWrapperItemBottomContent>
-            {dateHandler(Date.now(), date)}
+            {dateHandler(Date.now(), date as number)}
           </CommentWrapperItemBottomContent>
         </>
       )}

@@ -30,6 +30,7 @@ const App: FC = () => {
       comment:
         'lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus, perferendis. Itaque architecto, delectus dolorem impedit, veritatis dolorum praesentium nesciunt velit aliquid laboriosam doloremque nostrum. Fugiat sunt nam ipsa quaerat labore, eius necessitatibus aut magnam sequi perspiciatis voluptate rerum eum quas dolorem quidem assumenda fuga amet, pariatur eveniet ipsam sint cumque',
       raiting: -11,
+      date: 1671402334958,
     },
     {
       id: 2,
@@ -37,6 +38,7 @@ const App: FC = () => {
       email: 'asd@mail.ru',
       comment: 'asdasd',
       raiting: 11,
+      date: 1676402374958,
     },
     {
       id: 3,
@@ -45,6 +47,7 @@ const App: FC = () => {
       comment:
         'lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus, perferendis. Itaque architecto, delectus dolorem impedit, veritatis dolorum praesentium nesciunt velit aliquid laboriosam doloremque nostrum. Fugiat sunt nam ipsa quaerat labore, eius necessitatibus aut magnam sequi perspiciatis voluptate rerum eum quas dolorem quidem assumenda fuga amet, pariatur eveniet ipsam sint cumque',
       raiting: -12,
+      date: 1676402134958,
     },
   ]);
 
