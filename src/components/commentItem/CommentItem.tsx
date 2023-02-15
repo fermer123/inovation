@@ -1,4 +1,4 @@
-import {FC, memo, useState, useCallback} from 'react';
+import {FC, memo, useState, useCallback, useEffect} from 'react';
 import styled from 'styled-components';
 import Avatar from '@mui/material/Avatar';
 import {Button, ButtonGroup, Card, CardContent, Box} from '@mui/material';
@@ -63,6 +63,7 @@ const CommentItem: FC<ICommentItemProps> = ({
   subtractRaiting,
 }) => {
   const [open, setOpen] = useState<boolean>(true);
+  const [updateTimePassed, setuUpdateTimePassed] = useState<string>();
   const handleCommentOpen = useCallback(() => {
     setOpen(!open);
   }, [open]);
@@ -80,9 +81,16 @@ const CommentItem: FC<ICommentItemProps> = ({
       return `${Math.floor(timePassed / hour)} ч.`;
     }
     if (timePassed > day) {
-      return `${Math.floor(timePassed / hour)} д.`;
+      return `${Math.floor(timePassed / day)} д.`;
     }
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setuUpdateTimePassed(dateHandler(Date.now(), date as number));
+    }, 60000);
+    return () => clearInterval(interval);
+  }, [date, updateTimePassed]);
 
   return (
     <CommentWrapperItem>
@@ -111,7 +119,7 @@ const CommentItem: FC<ICommentItemProps> = ({
           </CommentWrapperItemTopContent>
           <CardContent>{comment}</CardContent>
           <CommentWrapperItemBottomContent>
-            {dateHandler(Date.now(), date as number)}
+            {updateTimePassed || dateHandler(Date.now(), date as number)}
           </CommentWrapperItemBottomContent>
         </>
       )}
