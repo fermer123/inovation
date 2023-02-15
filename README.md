@@ -45,5 +45,5 @@ yarn build
 ```
 npm start
 # or
-yarn
+yarn start
 ```

@@ -39,6 +39,11 @@ const CommentWrapperItemTopContentInfoRaitingNumber = styled.p`
   color: #2196f3;
 `;
 
+const CommentWrapperItemComment = styled(CardContent)`
+  height: auto;
+  word-wrap: wrap;
+`;
+
 const CommentWrapperItemBottomContent = styled(CardContent)`
   align-self: flex-end;
   justify-self: flex-start;
@@ -87,7 +92,7 @@ const CommentItem: FC<ICommentItemProps> = ({
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setuUpdateTimePassed(dateHandler(Date.now(), date as number));
+      setuUpdateTimePassed(dateHandler(Date.now(), date));
     }, 60000);
     return () => clearInterval(interval);
   }, [date, updateTimePassed]);
@@ -117,9 +122,9 @@ const CommentItem: FC<ICommentItemProps> = ({
               </ButtonGroup>
             </CommentWrapperItemTopContentInfoRaiting>
           </CommentWrapperItemTopContent>
-          <CardContent>{comment}</CardContent>
+          <CommentWrapperItemComment>{comment}</CommentWrapperItemComment>
           <CommentWrapperItemBottomContent>
-            {updateTimePassed || dateHandler(Date.now(), date as number)}
+            {updateTimePassed || dateHandler(Date.now(), date)}
           </CommentWrapperItemBottomContent>
         </>
       )}

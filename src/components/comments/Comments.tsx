@@ -38,7 +38,7 @@ const Comments: FC<ICommentsProps> = ({data, setData}) => {
 
   return (
     <CommentWrapper>
-      {data.map((e: IComment) => (
+      {data?.map((e: IComment) => (
         <CommentItem
           {...e}
           key={e.id}
