@@ -5,9 +5,10 @@ interface IInputFormProps {
   label: string;
   value: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  validate: boolean;
 }
 
-const InputForm: FC<IInputFormProps> = ({label, value, onChange}) => {
+const InputForm: FC<IInputFormProps> = ({label, value, onChange, validate}) => {
   return (
     <TextField
       value={value}
@@ -15,6 +16,7 @@ const InputForm: FC<IInputFormProps> = ({label, value, onChange}) => {
       fullWidth
       label={label}
       variant='outlined'
+      helperText={validate ? '' : 'неверный E-mail или пустое значение'}
     />
   );
 };

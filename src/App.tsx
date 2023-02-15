@@ -57,11 +57,15 @@ const App: FC = () => {
     <Box sx={{mx: 1, mt: 1}}>
       <InputFormWrapper>
         <Stack direction='row' spacing={2}>
-          <InputForm label='Введите имя' {...name} />
-          <InputForm label='Введите e-mail' {...email} />
+          <InputForm label='Введите имя' validate {...name} />
+          <InputForm
+            label='Введите e-mail'
+            validate={isValidEmail(email.value)}
+            {...email}
+          />
         </Stack>
         <Stack direction='row' spacing={2}>
-          <InputForm label='Введите комментарий' {...comment} />
+          <InputForm label='Введите комментарий' validate {...comment} />
         </Stack>
         <PostButton postData={postDataMemo} />
         <Comments data={data} setData={setData} />

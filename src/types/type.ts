@@ -4,5 +4,5 @@ export interface IComment {
   email: string;
   comment: string;
   raiting: number;
-  date?: number;
+  date: number;
 }
