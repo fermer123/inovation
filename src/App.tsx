@@ -29,6 +29,18 @@ const App: FC = () => {
       validateEmail,
     );
 
+  const validate = (inputName: string) => {
+    if (inputName === 'email') {
+      return isValidEmail(email.value) && email.value.length
+        ? ''
+        : 'неверный E-mail или пустое значение';
+    }
+    if (inputName === 'name') {
+      return name.value.length ? '' : 'поле не должно быть пустым';
+    }
+    return comment.value.length ? '' : 'поле не должно быть пустым';
+  };
+
   const postDataMemo = useCallback(() => {
     if (
       name.value &&
@@ -57,15 +69,26 @@ const App: FC = () => {
     <Box sx={{mx: 1, mt: 1}}>
       <InputFormWrapper>
         <Stack direction='row' spacing={2}>
-          <InputForm label='Введите имя' validate {...name} />
+          <InputForm
+            label='Введите имя'
+            name='name'
+            validate={validate}
+            {...name}
+          />
           <InputForm
             label='Введите e-mail'
-            validate={isValidEmail(email.value)}
+            name='email'
+            validate={validate}
             {...email}
           />
         </Stack>
         <Stack direction='row' spacing={2}>
-          <InputForm label='Введите комментарий' validate {...comment} />
+          <InputForm
+            label='Введите комментарий'
+            name='comment'
+            validate={validate}
+            {...comment}
+          />
         </Stack>
         <PostButton postData={postDataMemo} />
         <Comments data={data} setData={setData} />
