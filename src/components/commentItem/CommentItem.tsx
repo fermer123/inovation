@@ -124,7 +124,7 @@ const CommentItem: FC<ICommentItemProps> = ({
           </CommentWrapperItemTopContent>
           <CommentWrapperItemComment>{comment}</CommentWrapperItemComment>
           <CommentWrapperItemBottomContent>
-            {updateTimePassed || dateHandler(Date.now(), date)}
+            {updateTimePassed ?? '0 м.'}
           </CommentWrapperItemBottomContent>
         </>
       )}
