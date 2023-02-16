@@ -40,9 +40,7 @@ const CommentWrapperItemTopContentInfoRaitingNumber = styled.p`
 `;
 
 const CommentWrapperItemComment = styled(CardContent)`
-  height: auto;
-  word-wrap: wrap;
-  hyphens: manual;
+  overflow-wrap: break-word;
 `;
 
 const CommentWrapperItemBottomContent = styled(CardContent)`
@@ -125,7 +123,7 @@ const CommentItem: FC<ICommentItemProps> = ({
           </CommentWrapperItemTopContent>
           <CommentWrapperItemComment>{comment}</CommentWrapperItemComment>
           <CommentWrapperItemBottomContent>
-            {updateTimePassed ?? '0 м.'}
+            {updateTimePassed ?? '0 мин.'}
           </CommentWrapperItemBottomContent>
         </>
       )}

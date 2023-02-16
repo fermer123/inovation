@@ -24,11 +24,15 @@ const App: FC = () => {
   const email = useInput();
   const comment = useInput();
 
-  const isValidEmail = (validateEmail: string) =>
-    // eslint-disable-next-line no-useless-escape
-    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-      validateEmail,
-    );
+  const isValidEmail = useCallback(
+    (validateEmail: string) =>
+      // eslint-disable-next-line no-useless-escape
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+        validateEmail,
+      ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [email.value],
+  );
 
   const postDataMemo = useCallback(() => {
     if (
@@ -52,7 +56,7 @@ const App: FC = () => {
       comment.setValue('');
       email.setValue('');
     }
-  }, [comment, data, email, name]);
+  }, [comment, data, email, isValidEmail, name]);
 
   return (
     <Box sx={{mx: 1, mt: 1}}>
