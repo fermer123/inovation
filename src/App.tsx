@@ -23,23 +23,12 @@ const App: FC = () => {
   const name = useInput();
   const email = useInput();
   const comment = useInput();
+
   const isValidEmail = (validateEmail: string) =>
     // eslint-disable-next-line no-useless-escape
     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
       validateEmail,
     );
-
-  const validate = (inputName: string) => {
-    if (inputName === 'email') {
-      return isValidEmail(email.value) && email.value.length
-        ? ''
-        : 'неверный E-mail или пустое значение';
-    }
-    if (inputName === 'name') {
-      return name.value.length ? '' : 'поле не должно быть пустым';
-    }
-    return comment.value.length ? '' : 'поле не должно быть пустым';
-  };
 
   const postDataMemo = useCallback(() => {
     if (
@@ -69,26 +58,16 @@ const App: FC = () => {
     <Box sx={{mx: 1, mt: 1}}>
       <InputFormWrapper>
         <Stack direction='row' spacing={2}>
-          <InputForm
-            label='Введите имя'
-            name='name'
-            validate={validate}
-            {...name}
-          />
+          <InputForm label='Введите имя' name='name' {...name} />
           <InputForm
             label='Введите e-mail'
+            isValidEmail={isValidEmail}
             name='email'
-            validate={validate}
             {...email}
           />
         </Stack>
         <Stack direction='row' spacing={2}>
-          <InputForm
-            label='Введите комментарий'
-            name='comment'
-            validate={validate}
-            {...comment}
-          />
+          <InputForm label='Введите комментарий' name='comment' {...comment} />
         </Stack>
         <PostButton postData={postDataMemo} />
         <Comments data={data} setData={setData} />
