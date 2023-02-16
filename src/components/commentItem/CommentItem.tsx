@@ -42,6 +42,7 @@ const CommentWrapperItemTopContentInfoRaitingNumber = styled.p`
 const CommentWrapperItemComment = styled(CardContent)`
   height: auto;
   word-wrap: wrap;
+  hyphens: manual;
 `;
 
 const CommentWrapperItemBottomContent = styled(CardContent)`
