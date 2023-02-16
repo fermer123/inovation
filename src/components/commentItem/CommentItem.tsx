@@ -75,7 +75,7 @@ const CommentItem: FC<ICommentItemProps> = ({
   // eslint-disable-next-line consistent-return
   const dateHandler = (currentDate: number, commentDate: number) => {
     const min = 60000;
-    const hour = 360000;
+    const hour = 3600000;
     const day = 86400000;
     const timePassed = currentDate - commentDate;
     if (timePassed < hour) {
